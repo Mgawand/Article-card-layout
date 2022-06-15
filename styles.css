@@ -1,0 +1,248 @@
+*, *::before, *::after{
+	padding:0;
+	margin:0;
+	box-sizing:border-box;
+}
+
+html{
+	font-family:'Manrope',sans-serif;
+	font-weight:500;
+}
+body{
+	display: flex;
+	justify-content:center;
+	align-items: center;
+	min-height:100vh;
+	background:hsl(210, 46%, 95%);
+	padding:20px;
+}
+
+a{
+	text-decoration: none;
+	color:white;
+}
+img{
+	display: block;
+}
+
+button{
+	border:none;
+	outline:none;
+	cursor: pointer;
+}
+.article-container{
+	display:grid;
+	border-radius:10px;
+	max-width:730px;
+	grid-template-columns: 285px minmax(300px, 445px);
+	box-shadow:6px 6px 5px hsla(0, 0%, 0%, 0.02),
+              25px 25px 20px hsla(0, 0%, 0%, 0.03),
+              100px 100px 80px hsla(0, 0%, 0%, 0.05);
+}
+
+.article-img{
+	border-radius:10px 0 0 10px;
+	overflow:hidden;
+}
+
+.drawer-img{
+	width:100%;
+	height:100%;
+	object-fit: cover;
+	object-position: left;
+	transition: all 0.5s ease;
+}
+
+.article-container:hover .drawer-img { transform: scale(1.1); }
+
+.article-description {
+  background:white;
+  padding: 32px 40px;
+  border-radius: 0 10px 10px 0;
+}
+
+.heading {
+  font-size: 20px;
+  color: hsl(217, 19%, 35%);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.article-text {
+  color: hsl(214, 17%, 51%);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.acticle-content {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+}
+
+.michelle-img {
+  display:     flex;
+  align-items: center;
+}
+
+.profile-img {
+  width:  40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.name {
+  color: hsl(217, 19%, 35%);
+  font-size: 13px;
+}
+
+.date {
+  color: hsl(212, 23%, 69%);
+  font-size: 13px;
+}
+
+.article-share { position: relative; }
+
+.share-button {
+  background: hsl(210, 46%, 95%);
+  padding: 6px;
+  border-radius: 20px;
+  font-size: 20px;
+  color:hsl(214, 17%, 51%);
+  transition: all 0.25s ease;
+}
+
+.share-button:hover, .share-button.active {
+  background: hsl(214, 17%, 51%);
+  color: hsl(210, 46%, 95%);
+}
+
+.share-options {
+  /**
+   * variable for transforming `.share-option` box
+   * without repeating all transform value
+   */
+  --scale: 0;
+  --translateX: -50%;
+  --translateY: 0;
+
+  background: hsl(217, 19%, 35%);
+  position: absolute;
+  bottom: calc(100% + 28px);
+  left:   50%;
+  transform: translate(var(--translateX), var(--translateY)) scale(var(--scale));
+  display:     flex;
+  align-items: center;
+  gap: 12px;
+  padding: 17px 40px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px -5px #0003;
+  transform-origin: bottom;
+  visibility: hidden;
+  transition: all 0.25s ease;
+}
+
+.share-options.active {
+  --scale: 1;
+  visibility: visible;
+}
+
+.share-options::after {
+  content: '';
+  background: hsl(217, 19%, 35%);
+  width:  20px;
+  height: 20px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -60%) rotate(45deg);
+}
+
+.share-options span {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: hsl(212, 23%, 69%);
+  margin-right: 5px;
+}
+
+.share-options ion-icon { font-size: 22px; }
+
+.share-options ion-icon:hover,
+.heading:hover,
+.name:hover { filter: invert(1); }
+
+
+
+
+
+/*-----------------------------------*\
+ #RESPONSIVE
+\*-----------------------------------*/
+
+@media screen and (max-width: 768px) {
+
+  :root {
+
+    /**
+     * Typography
+     */
+
+    --fs-13: 12px;
+
+  }
+
+  /**
+   * article card responsive
+   */
+
+  .article-container {
+    grid-template-columns: 1fr;
+    max-width: 294px;
+    overflow: hidden;
+  }
+
+  .article-img, .article-description { border-radius: 0; }
+
+  .article-img { height: 180px; }
+
+  .article-description { padding: 30px 28px 20px; }
+
+  .heading { font-size: 15px; }
+
+  .article-text { margin-bottom: 30px; }
+
+  .acticle-content { position: relative; }
+
+  .profile-img {
+    width:  35px;
+    height: 35px;
+  }
+
+  .share {
+    position: static;
+    z-index: 1;
+  }
+
+  .share-button { font-size: 16px; }
+
+  .share-options {
+    /**
+     * variable for transforming `.share-option` box
+     * without repeating all transform value
+     */
+    --scale: 1;
+    --translateX: 0;
+    --translateY: 100%;
+
+    inset: -20px -28px;
+    border-radius: 0;
+    padding: 17px 30px;
+    z-index: -1;
+  }
+
+  .share-options.active { --translateY: 0; }
+
+}
